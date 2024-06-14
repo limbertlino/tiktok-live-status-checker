@@ -1,5 +1,5 @@
+"use strict";
 // import liveDetectorService from './services/tiktokLiveDetector';
-
 // const result = async () => {
 //   const name = 'zoraji40';
 //   // const name = 'soyeldanielo';
@@ -16,5 +16,4 @@
 //     console.log(error);
 //   }
 // };
-
 // result();
