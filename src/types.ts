@@ -1,4 +1,5 @@
-export interface CheckVideoTagResult {
+export interface Result {
   success: boolean;
-  error?: Error;
+  error?: string | Error;
+  data?: string | null;
 }
