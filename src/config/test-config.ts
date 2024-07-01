@@ -1,5 +1,4 @@
 export const testUsers = {
-  // activeUser: 'weathernewslive',
-  activeUser: 'soyelmarck',
+  activeUser: 'weathernewslive',
   inactiveUser: 'roldan_varela',
 };
