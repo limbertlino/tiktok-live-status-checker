@@ -34,13 +34,26 @@ const isLiveByVideoTag = async (tiktokUser) => {
 };
 const isLiveByTiktokApi = async (tiktokUser) => {
     try {
-        const { data } = await (0, getRoomId_1.getTikTokLiveRoomId)(tiktokUser);
-        const result = await axios_1.default.get(`${config_1.TIKTOK_LIVE_API_URL}${data}`);
-        console.log(result.data);
-        return { success: true };
+        const roomIdResult = await (0, getRoomId_1.getTikTokLiveRoomId)(tiktokUser);
+        if (!roomIdResult.success && !roomIdResult.error)
+            return roomIdResult;
+        const result = await axios_1.default.get(`${config_1.TIKTOK_LIVE_API_URL}${roomIdResult.data}`);
+        const { status } = result.data.LiveRoomInfo;
+        return { success: status === 2, data: status.toString() };
     }
     catch (error) {
-        return { success: false };
+        let errorMessage = 'An error has occurred: ';
+        if (axios_1.default.isAxiosError(error)) {
+            const axiosError = error;
+            errorMessage += axiosError.message;
+        }
+        else if (error instanceof Error) {
+            errorMessage += error.message;
+        }
+        else {
+            errorMessage += 'Unknown error';
+        }
+        return { data: null, error: errorMessage, success: false };
     }
 };
 exports.default = { isLiveByVideoTag, isLiveByTiktokApi };
