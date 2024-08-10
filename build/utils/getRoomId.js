@@ -10,15 +10,15 @@ const getTikTokLiveRoomId = async (tiktokUser) => {
     try {
         const response = await axios_1.default.get(`${config_1.TIKTOK_BASE_URL}${tiktokUser}/live`, config_1.config);
         const htmlContent = response.data;
-        const ROOM_ID_REGEX = /snssdk1233:\/\/live\?room_id=(\d+)/;
+        const ROOM_ID_REGEX = /"roomId":\s*"(\d+)"/;
         const match = htmlContent.match(ROOM_ID_REGEX);
         const roomId = match ? match[1] : null;
         if (roomId === null)
-            return { success: false, data: 'Room id not found' };
+            return { success: false, data: "Room id not found" };
         return { success: true, data: roomId };
     }
     catch (error) {
-        let errorMessage = 'An error has occurred while fetching room_id data: ';
+        let errorMessage = "An error has occurred while fetching room_id data: ";
         if (axios_1.default.isAxiosError(error)) {
             const axiosError = error;
             errorMessage += axiosError.message;
@@ -27,7 +27,7 @@ const getTikTokLiveRoomId = async (tiktokUser) => {
             errorMessage += error.message;
         }
         else {
-            errorMessage += 'Unknown error';
+            errorMessage += "Unknown error";
         }
         return { data: null, error: errorMessage, success: false };
     }

@@ -2,6 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.testUsers = void 0;
 exports.testUsers = {
-    activeUser: 'weathernewslive',
-    inactiveUser: 'roldan_varela',
+    activeUser: "eldiariodecj",
+    inactiveUser: "roldan_varela",
 };

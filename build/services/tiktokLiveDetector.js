@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const config_1 = require("../config");
+// import { TIKTOK_LIVE_API_URL } from "../config";
 const chromiumDriver_1 = require("../config/chromiumDriver");
 const getRoomId_1 = require("../utils/getRoomId");
 const axios_1 = __importDefault(require("axios"));
@@ -14,7 +15,7 @@ const isLiveByVideoTag = async (tiktokUser) => {
         driver = await (0, chromiumDriver_1.initChromeDriver)();
         try {
             await driver.get(`${config_1.TIKTOK_BASE_URL}${tiktokUser}/live`);
-            const videoTag = await driver.wait(selenium_webdriver_1.until.elementLocated(selenium_webdriver_1.By.css('video')), 10000);
+            const videoTag = await driver.wait(selenium_webdriver_1.until.elementLocated(selenium_webdriver_1.By.css("video")), 10000);
             return { success: !!videoTag };
         }
         finally {
@@ -24,12 +25,12 @@ const isLiveByVideoTag = async (tiktokUser) => {
     catch (error) {
         if (error instanceof Error) {
             const message = error.message;
-            if (message.includes('Waiting for element to be located By')) {
+            if (message.includes("Waiting for element to be located By")) {
                 return { success: false, error: error };
             }
             return { success: false, error };
         }
-        return { success: false, error: new Error('Unknow error occurred') };
+        return { success: false, error: new Error("Unknow error occurred") };
     }
 };
 const isLiveByTiktokApi = async (tiktokUser) => {
@@ -42,7 +43,7 @@ const isLiveByTiktokApi = async (tiktokUser) => {
         return { success: status === 2, data: status.toString() };
     }
     catch (error) {
-        let errorMessage = 'An error has occurred: ';
+        let errorMessage = "An error has occurred: ";
         if (axios_1.default.isAxiosError(error)) {
             const axiosError = error;
             errorMessage += axiosError.message;
@@ -51,9 +52,9 @@ const isLiveByTiktokApi = async (tiktokUser) => {
             errorMessage += error.message;
         }
         else {
-            errorMessage += 'Unknown error';
+            errorMessage += "Unknown error";
         }
         return { data: null, error: errorMessage, success: false };
     }
 };
-exports.default = { isLiveByVideoTag, isLiveByTiktokApi };
+exports.default = { isLiveByTiktokApi, isLiveByVideoTag };
