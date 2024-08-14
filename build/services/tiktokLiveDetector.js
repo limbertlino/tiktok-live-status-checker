@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const config_1 = require("../config");
-// import { TIKTOK_LIVE_API_URL } from "../config";
 const chromiumDriver_1 = require("../config/chromiumDriver");
 const getRoomId_1 = require("../utils/getRoomId");
 const axios_1 = __importDefault(require("axios"));
