@@ -1,6 +1,5 @@
 import { By, until } from "selenium-webdriver";
 import { TIKTOK_BASE_URL, TIKTOK_LIVE_API_URL } from "../config";
-// import { TIKTOK_LIVE_API_URL } from "../config";
 import { initChromeDriver } from "../config/chromiumDriver";
 
 import { Result } from "../types";

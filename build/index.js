@@ -1,19 +1,13 @@
+#!/usr/bin/env node
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const tiktokLiveDetector_1 = __importDefault(require("../src/services/tiktokLiveDetector"));
-const main = async () => {
-    const tiktokUser = "eldiariodecj";
-    try {
-        // const apiResult = await tiktokService.isLiveByVideoTag(tiktokUser);
-        // const apiResult = await tiktokService.isLiveByTiktokApi(tiktokUser);
-        const apiResult = await tiktokLiveDetector_1.default.isLiveByVideoTag(tiktokUser);
-        console.log(apiResult);
-    }
-    catch (error) {
-        console.error("Error al ejecutar los servicios: ", error);
-    }
-};
-main().catch((err) => console.error("Error inesperado en main: ", err));
+const commands_1 = require("./cli/commands");
+const welcomeMessage_1 = require("./cli/welcomeMessage");
+(0, welcomeMessage_1.welcomeMessage)();
+const program = (0, commands_1.setupCommands)();
+if (process.argv.length > 2) {
+    program.parse(process.argv);
+}
+else {
+    program.outputHelp();
+}
