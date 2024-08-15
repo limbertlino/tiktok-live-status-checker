@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest";
 import liveDetectorService from "../services/tiktokLiveDetector";
-import { testUsers } from "../config/test-config";
+import { testUsers } from "../config/testConfig";
 import axios from "axios";
 
 const SECONDS = 1000;
