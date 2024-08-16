@@ -19,7 +19,7 @@ Ensure you have installed all of the following prerequisites on your development
 To build the Docker image, run the following command:
 
 ```shell
-docker built -t IMAGE_NAME .
+docker build -t IMAGE_NAME .
 ```
 
 ### Run the container for the first time
